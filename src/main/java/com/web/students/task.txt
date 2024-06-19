@@ -1,0 +1,1 @@
+Any time you are using a third party library and you want to autowire you must use the bean annotation

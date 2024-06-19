@@ -1,0 +1,59 @@
+package com.web.students.models;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+
+import java.util.List;
+
+@Getter
+@Entity
+@Table(name="student")
+
+public class StudentEntity extends BaseModel {
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="first_name")
+    private  String firstName ;
+    @Column(name="last_name ")
+    private String  lastName ;
+    @Column(name="matric_number")
+    private String hashedPassword;
+    private String matricNumber ;
+
+    @ManyToMany
+    private List                                                                                                     <Role> roles;
+
+    private boolean isEmailVerified;
+
+
+
+    public StudentEntity() {
+    }
+
+    public StudentEntity(String firstName, String lastName, String matricNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.matricNumber = matricNumber;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public void setMatricNumber(String matricNumber) {
+        this.matricNumber = matricNumber;
+    }
+
+    @Override
+    public String toString() {
+        return "studentEntity{" +
+                "firstName=" + firstName +
+                ", lastName=" + lastName +
+                ", matricNumber=" + matricNumber +
+                '}';
+    }
+}
