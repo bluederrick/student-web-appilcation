@@ -1,12 +1,13 @@
 package com.web.students.controller;
-
 import com.web.students.models.StudentEntity;
 import com.web.students.repository.studentRepo;
 import com.web.students.repository.userRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
+import java.util.List;
+
+//import java.awt.*;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -17,9 +18,9 @@ public class studentController {
 
     private userRepo  UserRepo;
 
-    public studentController(userRepo userRepo) {
-        UserRepo = userRepo;
-    }
+//    public studentController(userRepo userRepo) {
+//        UserRepo = userRepo;
+//    }
 
 
 //    private loginService LoginService;
@@ -32,16 +33,16 @@ public class studentController {
 //    various routes and endpoints
 
     @GetMapping("/")
-//    get all registered student
-//    localhost:8080/api/v1/
     public List<StudentEntity> getAllStudents() {
 
-        return List<StudentEntity>  students= repo.findAll();
+        List<StudentEntity> students;
+          students = repo.findAll();
+          return students;
     }
 
 
 //    @PutMapping("/update/{id}")
-//    public String updateStudents (@PathVariable Lomg id){
+//    public String updateStudents (@PathVariable Long id){
 //
 //
 //    }

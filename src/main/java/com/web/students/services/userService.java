@@ -2,18 +2,28 @@ package com.web.students.services;
 
 import com.web.students.models.Token;
 import com.web.students.models.User;
+import com.web.students.repository.tokenRepo;
 import com.web.students.repository.userRepo;
 import org.apache.hc.client5.http.auth.InvalidCredentialsException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.InputMismatchException;
 import java.util.Optional;
+import java.util.UUID;
 
 public class userService {
     private User user;
 
     private userRepo UserRepo ;
 
+    private Token token;
+
+    private tokenRepo TokenRepo;
 
 
     @Autowired
@@ -27,8 +37,8 @@ public class userService {
 
     //    private userRepo userRepo;
     public User signUp(String name , String email , String password){
-         optionUser = UserRepo.findByEmail(email);
-        if(optionUser.isPresent() ){
+        Optional<User>  isExist = UserRepo.findByEmail(email);
+        if(isExist.isPresent() ){
             System.out.println("user already exist");
 
         }
@@ -37,7 +47,8 @@ public class userService {
         user.setEmail(user.getEmail());
         user.setPassword( bcryptPasswordEncoder.encode(password));
 
-        UserRepo.save(user);
+       return  UserRepo.save(user);
+
 
 
     }
@@ -49,22 +60,45 @@ public class userService {
  throw new NullPointerException("isUser is not found");
 
         }
+
+
+        public String getHashedPassword(){
+            bcryptPasswordEncoder()
+        }
 // User model
 ;   User user = isUser.get();
       if (!bcryptPasswordEncoder.matches(password, user.getHashedPassword())) {
-                return null;
+           throw new InvalidCredentialsException("please enter the correct field") ;
             }
             ;
-       else {
-            throw new InvalidCredentialsException();
-        }
+
+        Token token = new Token() ;
+
+         token.setUser(user);
+         token.setExpiryDate(get1DayLaterDate());
+         token.setValue(UUID.randomUUID().toString());
+         return TokenRepo.save(token);
+
+    }
+
+    private Date get1DayLaterDate(){
+        LocalDate currentDate=LocalDate.now().plusDays(1);
+        return Date.from(currentDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
 
     }
 
 
-    public User getUser (){
-        Optional<User> optionalUser =
+    public User getUser (Long id){
+            Optional<User> optionalUser = UserRepo.findById(id);
+            if(optionalUser.isEmpty())
+                try {
+                    throw new FileNotFoundException("User not found");
+                } catch (FileNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+
+
         return null;
     }
 

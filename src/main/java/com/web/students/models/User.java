@@ -11,15 +11,14 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity
-@Table(name="User")
-public class User                                                                                                                                                                                                  User extends BaseModel {
+@Entity(name="_User")
+//@Table
+public class User extends BaseModel {
     private String name ;
 
-    @Column(name="UserEmail")
     private  String email;
 
-    @Column(name="User-password")
+  @Column(name="User_password")
     private String password ;
 
     @ManyToMany
@@ -35,6 +34,5 @@ public class User                                                               
         this.role = role;
         this.isEmailVerified = isEmailVerified;
     }
-
 
 }
