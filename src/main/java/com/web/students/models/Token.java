@@ -1,14 +1,17 @@
 package com.web.students.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.util.Date;
 
-@Entity(name="user_token")
+@Entity
+@Table(name="user_token")
+public class Token {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-public class Token  extends BaseModel {
     @Getter
     private String value;
 

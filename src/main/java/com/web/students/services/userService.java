@@ -62,15 +62,13 @@ public class userService {
         }
 
 
-        public String getHashedPassword(){
-            bcryptPasswordEncoder()
-        }
+
 // User model
 ;   User user = isUser.get();
-      if (!bcryptPasswordEncoder.matches(password, user.getHashedPassword())) {
+      if (!bcryptPasswordEncoder.matches(password, user.getPassword())) {
            throw new InvalidCredentialsException("please enter the correct field") ;
             }
-            ;
+
 
         Token token = new Token() ;
 

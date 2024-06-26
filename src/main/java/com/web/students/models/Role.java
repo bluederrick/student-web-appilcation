@@ -1,13 +1,18 @@
 package com.web.students.models;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name="role_user")
+@Entity
+@Table(name="role_user")
 
 public class Role {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    private Long id;
     private String name;
 }

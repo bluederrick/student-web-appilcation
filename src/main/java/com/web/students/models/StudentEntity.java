@@ -7,25 +7,25 @@ import java.util.List;
 
 @Getter
 @Entity
-@Table(name="student")
+@Table(name="student_Entity")
 
-public class StudentEntity extends BaseModel {
-//    @Id
-//    @GeneratedValue(strategy = GenerationType.AUTO)
+public class StudentEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column(name="first_name")
     private  String firstName ;
     @Column(name="last_name ")
     private String  lastName ;
-    @Column(name="matric_number")
+    private String email;
     private String hashedPassword;
+    @Column(name="matric_number")
     private String matricNumber ;
 
-    @ManyToMany
-    private List                                                                                                     <Role> roles;
+//    @ManyToMany
+//    private List                                                                                                     <Role> roles;
 
     private boolean isEmailVerified;
-
-
 
     public StudentEntity() {
     }
