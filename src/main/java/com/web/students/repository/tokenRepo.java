@@ -10,5 +10,5 @@ import java.util.Optional;
 public interface tokenRepo  extends JpaRepository<Token, Long> {
 //    custom methods
 
-    Optional<Token>findByValueAndIsDeletedEquals( String Token ,boolean isDeleted);
+    Optional<Token>findByValueAndIsDeletedEquals( String Token ,Boolean isDeleted);
 }
