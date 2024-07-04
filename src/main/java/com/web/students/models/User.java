@@ -9,7 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name="_User")
+@Table(name="User")
 //public class User extends BaseModel {
     public class User {
     @Id

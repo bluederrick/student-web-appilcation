@@ -5,6 +5,8 @@ import com.web.students.DTO.SignupRequestDTO;
 import com.web.students.models.User;
 import com.web.students.repository.userRepo;
 import com.web.students.services.userService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -60,8 +62,12 @@ private userService UserService;
 
     }
 
+    @PostMapping("/users/logout")
+    public ResponseEntity<Void> logout(@RequestParam("token") String token){
+    userService.logOut(token);
+    return new ResponseEntity<>(HttpStatus.OK);
 
-//    login controller
+    }
 
 
 }

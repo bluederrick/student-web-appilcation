@@ -48,6 +48,8 @@ public class StudentEntity {
         this.matricNumber = matricNumber;
     }
 
+    public void setHashedPassword(String hashedPassword){this.hashedPassword=hashedPassword;}
+
     @Override
     public String toString() {
         return "studentEntity{" +

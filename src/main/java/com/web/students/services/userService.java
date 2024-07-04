@@ -34,7 +34,6 @@ public class userService {
 //    }
 
 
-
     //    private userRepo userRepo;
     public User signUp(String name , String email , String password){
         Optional<User>  isExist = UserRepo.findByEmail(email);
@@ -100,4 +99,17 @@ public class userService {
         return null;
     }
 
+    public Void logout(String token){
+        Optional<Token> tokenOptional;
+
+        tokenOptional= TokenRepo.findByValueAndIsDeletedEquals(token, false);
+
+                if(tokenOptional.isEmpty()){
+//                    throw an exception saying token is present  or already deleted
+
+                }
+                Token updatedToken =tokenOptional.get();
+                updatedToken.setDeleted(true);
+                TokenRepo.save();
+    }
 }
